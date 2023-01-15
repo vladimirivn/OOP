@@ -1,4 +1,5 @@
 package oop1;
+import oop1.transport.Bus;
 import oop1.transport.Car;
 
 
@@ -12,6 +13,7 @@ public class Main {
                 "",
                 -3,
                 "Russia",
+                150,
                 "MT",
                 "Sedan",
                 "A0000AA134rus",
@@ -26,6 +28,7 @@ public class Main {
                 "Black",
                 2020,
                 "Germany",
+                250,
                 "AT",
                 "Sedan",
                 "GB-1234AA",
@@ -40,6 +43,7 @@ public class Main {
                 "Black",
                 2021,
                 "Germany",
+                290,
                 "AT",
                 "Cabriolet",
                 "GB-2222BB",
@@ -54,6 +58,7 @@ public class Main {
                 "Red",
                 2018,
                 "South Korea",
+                190,
                 "AT",
                 "SUV",
                 "KR-04532I",
@@ -68,6 +73,7 @@ public class Main {
                 "Orange",
                 2016,
                 "South Korea",
+                -200,
                 "AT",
                 "Sedan",
                 "У0440УУ195",
@@ -85,6 +91,20 @@ public class Main {
         System.out.println(kia);
         System.out.println("-----------------------------------------------------");
         System.out.println(hyundai);
+        System.out.println("----------------- автобусы ------------------------------------");
+
+        Bus ikarus = new Bus( "Ikarus", "i345", 2021,
+                     "Hungary", "Orange", 100);
+        Bus volgabus = new Bus( "VolgaBus", "Volzhanin", 2022,
+                "Russia", "White", 110);
+        Bus neoplan = new Bus( "Neoplan", "Skyliner", 2019,
+                "Germany", "Blue", 120);
+
+        System.out.println(ikarus);
+        System.out.println("--------------------------");
+        System.out.println(volgabus);
+        System.out.println("--------------------------");
+        System.out.println(neoplan);
 
     }
 
