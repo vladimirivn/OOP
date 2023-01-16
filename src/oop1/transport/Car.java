@@ -1,13 +1,7 @@
 package oop1.transport;
 
-public class Car {
-    private final String brand; // Марка
-    private final String model; // Модель
+public class Car extends Transport{
     private double engineVolume; //Объем двигателя
-    private String color; // Цвет кузова
-    private final int productionYear; // Год производства
-    private final String productionCountry; // Страна производства
-
     private String transmission; // Тип трансмиссии
     private final String style; // Тип кузова
     private String registrationNumber; // Регистрационный номер
@@ -18,8 +12,8 @@ public class Car {
 
     private static final String DEFAULT_VALUE = "default";
     private static final double DEFAULT_ENGINE_VOLUME = 1.5;
-    private static final String DEFAULT_COLOR = "White";
-    private static final int DEFAULT_PRODUCTION_YEAR = 2000;
+//    private static final String DEFAULT_COLOR = "White";
+//    private static final int DEFAULT_PRODUCTION_YEAR = 2000;
     private static final String DEFAULT_TRANSMISSION = "MT";
     private static final String DEFAULT_STYLE = "Sedan";
     private static final int DEFAULT_NUMBER_OF_SEATS = 5;
@@ -31,6 +25,7 @@ public class Car {
                String color,
                int productionYear,
                String productionCountry,
+               int maximumSpeedCar,
                String transmission,
                String style,
                String registrationNumber,
@@ -38,31 +33,9 @@ public class Car {
                boolean summerTires,
                Key key)
     {
-        if(brand == null || brand.isBlank() || brand.isEmpty()) {
-          this.brand = DEFAULT_VALUE;
-        } else {
-            this.brand = brand;
-        }
-        if(model == null || model.isBlank() || model.isEmpty()) {
-            this.model = DEFAULT_VALUE;
-        } else {
-            this.model = model;
-        };
+        super(brand, model, productionYear, productionCountry, color, maximumSpeedCar );
 
         setEngineVolume(engineVolume);
-        setColor(color);
-
-        if(productionYear <= 0) {
-            this.productionYear = DEFAULT_PRODUCTION_YEAR;
-        } else {
-            this.productionYear = productionYear;
-        }
-        if(productionCountry == null || productionCountry.isBlank() || productionCountry.isEmpty()) {
-            this.productionCountry = DEFAULT_VALUE;
-        } else {
-            this.productionCountry = productionCountry;
-        }
-
         setTransmission(transmission);
 
         if(style == null || style.isBlank() || style.isEmpty()) {
@@ -107,18 +80,7 @@ public class Car {
             return "удаленный запуск: " + remoteStartEngine + "\nбесключевой доступ: " + keylessAccess;
         }
     }
-    public String getBrand() {
-        return brand;
-    }
-    public String getModel() {
-        return model;
-    }
-    public int getProductionYear() {
-        return productionYear;
-    }
-    public String getProductionCountry() {
-        return productionCountry;
-    }
+
     public String getStyle() {
         return style;
     }
@@ -136,17 +98,8 @@ public class Car {
             this.engineVolume = engineVolume;
         }
     }
-    public String getColor() {
-        return color;
-    }
-    public void setColor(String color) {
-        if (color == null || color.isBlank() || color.isEmpty()) {
-            this.color = DEFAULT_COLOR;
-        } else {
-            this.color = color;
-        }
-    }
-    public String getTransmission() {
+
+     public String getTransmission() {
         return transmission;
     }
     public void setTransmission(String transmission) {
@@ -195,12 +148,10 @@ public class Car {
 
     @Override
     public String toString() {
-        return "Марка: " + brand + "\nмодель: " + model + "\nобъем двигателя: " + engineVolume +
-                "\nцвет: " + color + "\nгод выпуска: " + productionYear +
-                "\nстрана сборки: " + productionCountry + "\nкоробка передач: " + transmission +
-                "\nтип кузова: " + style + "\nрегистрационный номер: " + registrationNumber +
-                "\nколичество мест: " + numberOfSeats + "\nлетние шины: " + summerTires +
-                "\n" + key;
+        return super.toString() + "\nобъем двигателя: " + engineVolume +
+                "\nкоробка передач: " + transmission + "\nтип кузова: " + style +
+                "\nрегистрационный номер: " + registrationNumber + "\nколичество мест: " + numberOfSeats +
+                "\nлетние шины: " + summerTires + "\n" + key;
     }
 
 }
