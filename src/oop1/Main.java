@@ -1,111 +1,66 @@
 package oop1;
-import oop1.transport.Bus;
 import oop1.transport.Car;
-
+import oop1.transport.Bus;
+import oop1.transport.Transport;
+import oop1.transport.Truck;
+import oop1.transport.drivers.DriveC;
+import oop1.transport.drivers.DriverB;
+import oop1.transport.drivers.DriverD;
 
 public class Main {
     public static void main(String[] args) {
 
-        Car lada = new Car(
-                "Lada",
-                " ",
-                1.7,
-                "",
-                -3,
-                "Russia",
-                150,
-                "MT",
-                "Sedan",
-                "A0000AA134rus",
-                0,
-                true,
-                new Car.Key(true,false)
-        );
-        Car audi = new Car(
-                "Audi",
-                "A8 50 L TDI quattro",
-                3.0,
-                "Black",
-                2020,
-                "Germany",
-                250,
-                "AT",
-                "Sedan",
-                "GB-1234AA",
-                5,
-                true,
-                new Car.Key(false,true)
-        );
-        Car bmw = new Car(
-                "BMW",
-                "Z8",
-                3.0,
-                "Black",
-                2021,
-                "Germany",
-                290,
-                "AT",
-                "Cabriolet",
-                "GB-2222BB",
-                5,
-                true,
-                new Car.Key()
-        );
-        Car kia = new Car(
-                "Kia",
-                "Sportage 4th generation",
-                2.4,
-                "Red",
-                2018,
-                "South Korea",
-                190,
-                "AT",
-                "SUV",
-                "KR-04532I",
-                6,
-                false,
-                new Car.Key(false,false)
-        );
-        Car hyundai = new Car(
-                "Hyundai",
-                "Avante",
-                1.6,
-                "Orange",
-                2016,
-                "South Korea",
-                -200,
-                "AT",
-                "Sedan",
-                "У0440УУ195",
-                6,
-                false,
-                new Car.Key(true,true)
-        );
 
-        System.out.println(lada);
-        System.out.println("-----------------------------------------------------");
-        System.out.println(audi);
-        System.out.println("-----------------------------------------------------");
-        System.out.println(bmw);
-        System.out.println("-----------------------------------------------------");
-        System.out.println(kia);
-        System.out.println("-----------------------------------------------------");
-        System.out.println(hyundai);
-        System.out.println("----------------- автобусы ------------------------------------");
+        for (int i = 1; i <= 4; i++) {
+            DriverB driverB = new DriverB("Водитель категории B №" + i, false, i);
+            Car car = new Car("Lada_" + i,
+                    "Vesta Sport ",
+                    1.7,
+                    driverB
+            );
+            DriveC driverC = new DriveC("Водитель категории C №" + i, true, i + 3);
+            Bus bus = new Bus("Volzhanin_" + i,
+                    "Liner",
+                    2.5,
+                    driverC
+            );
+            DriverD driverD = new DriverD("Водитель категории D №" + i, true, i + 5);
+            Truck truck = new Truck("Kamaz_" + i,
+                    "Travel",
+                    3.5,
+                    driverD
+            );
+            System.out.println("-------------------------");
+            System.out.println(car);
+            car.pitStop();
+            car.bestTimeCircle();
+            car.maximumSpeed();
 
-        Bus ikarus = new Bus( "Ikarus", "i345", 2021,
-                     "Hungary", "Orange", 100);
-        Bus volgabus = new Bus( "VolgaBus", "Volzhanin", 2022,
-                "Russia", "White", 110);
-        Bus neoplan = new Bus( "Neoplan", "Skyliner", 2019,
-                "Germany", "Blue", 120);
+            System.out.println("-------------------------");
+            System.out.println(bus);
+            bus.pitStop();
+            bus.bestTimeCircle();
+            bus.maximumSpeed();
 
-        System.out.println(ikarus);
-        System.out.println("--------------------------");
-        System.out.println(volgabus);
-        System.out.println("--------------------------");
-        System.out.println(neoplan);
+            System.out.println("-------------------------");
+            System.out.println(truck);
+            truck.pitStop();
+            truck.bestTimeCircle();
+            truck.maximumSpeed();
 
+            System.out.println("----------- Заезды --------------");
+            printInfoCompeting(car);
+            printInfoCompeting(bus);
+            printInfoCompeting(truck);
+        }
     }
-
+    private static void printInfoCompeting(Transport<?> transport){
+        if (transport.getDriver().isDriversLicense()) {
+            System.out.println("водитель " + transport.getDriver().getFullName() +
+                    " управляет автомобилем " + transport.getBrand() + " и будет участвовать в заезде");
+        } else {
+            System.out.println("водитель " + transport.getDriver().getFullName() +
+                    " не может управлять автомобилем " + transport.getBrand() + " и не будет участвовать в заезде");
+        }
+    }
 }
