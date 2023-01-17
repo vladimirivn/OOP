@@ -1,14 +1,19 @@
 package oop1.transport;
 
-public abstract class Transport {
+public abstract class Transport<T extends Driver> implements Competing {
     private final String brand; // Марка
     private final String model; // Модель
     private double engineVolume; //Объем двигателя
 
+    private T driver;
+
     private static final String DEFAULT_VALUE = "default";
     private static final double DEFAULT_ENGINE_VOLUME = 1.5;
 
-    public Transport(String brand, String model, double engineVolume) {
+    public Transport(String brand,
+                     String model,
+                     double engineVolume,
+                     T driver) {
 
         if(brand == null || brand.isBlank() || brand.isEmpty()) {
             this.brand = DEFAULT_VALUE;
@@ -22,6 +27,7 @@ public abstract class Transport {
         }
 
         setEngineVolume(engineVolume);
+        setDriver(driver);
     }
     public abstract void startMoving();
     public abstract void stopMoving();
@@ -42,6 +48,15 @@ public abstract class Transport {
             this.engineVolume = engineVolume;
         }
     }
+
+    public T getDriver() {
+        return driver;
+    }
+
+    public void setDriver(T driver) {
+        this.driver = driver;
+    }
+
     @Override
     public String toString() {
         return "Марка: " + brand + ", модель: " + model + ", объем двигателя: " + engineVolume;
