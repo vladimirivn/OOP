@@ -5,13 +5,39 @@ import oop1.transport.drivers.DriverB;
 
 public class Car extends Transport<DriverB>{
 
-    public Car(String brand,
+    BodyType bodyType;
+
+     public Car(String brand,
                String model,
                double engineVolume,
-               DriverB driver) {
+               DriverB driver, BodyType bodyType) {
 
-        super(brand, model, engineVolume, driver);
+            super(brand, model, engineVolume, driver);
+    }
 
+    public enum BodyType {
+        SEDAN("Седан"),
+        HATCHBACK("Хетчбэк"),
+        COUPE("Купе"),
+        WAGON("Универсал"),
+        OFF_ROAD("Внедорожник"),
+        CROSSOVER("Кроссовер"),
+        PICKUP_TRUCK("Пикап"),
+        VAN("Фургон"),
+        MINIVAN("Минивэн");
+
+        private String bodyType;
+
+        BodyType(String bodyType) {
+            this.bodyType = bodyType;
+        }
+        public String getBodyType() {
+            return bodyType;
+        }
+        @Override
+        public String toString() {
+            return "Тип кузова: <"+ BodyType.valueOf(bodyType)+">";
+        }
     }
 
     @Override
@@ -47,7 +73,6 @@ public class Car extends Transport<DriverB>{
 
     @Override
     public String toString() {
-        return super.toString() + " - легковой автомобиль";
+        return super.toString()+bodyType.getBodyType().toString();
     }
-
 }

@@ -16,7 +16,8 @@ public class Main {
             Car car = new Car("Lada_" + i,
                     "Vesta Sport ",
                     1.7,
-                    driverB
+                    driverB,
+                    Car.BodyType.SEDAN
             );
             DriveC driverC = new DriveC("Водитель категории C №" + i, true, i + 3);
             Bus bus = new Bus("Volzhanin_" + i,
