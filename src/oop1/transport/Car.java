@@ -3,15 +3,16 @@ package oop1.transport;
 import oop1.transport.drivers.DriverB;
 
 public class Car extends Transport<DriverB>{
-
     private CarBodyType carBodyType;
 
      public Car(String brand,
                String model,
                double engineVolume,
-               DriverB driver, CarBodyType carBodyType) {
+               DriverB driver,
+               CarBodyType carBodyType) {
 
             super(brand, model, engineVolume, driver);
+
             this.carBodyType = carBodyType;
     }
 
@@ -29,11 +30,16 @@ public class Car extends Transport<DriverB>{
         private String bodyType;
 
         CarBodyType(String bodyType) {
-            this.bodyType = bodyType;
+
+            setBodyType(bodyType);
         }
         public String getBodyType() {
             return this.bodyType;
         }
+        public void setBodyType(String bodyType) {
+            this.bodyType = bodyType;
+        }
+
         @Override
         public String toString() {
             return "тип кузова: <" + bodyType +">";
@@ -70,6 +76,15 @@ public class Car extends Transport<DriverB>{
     @Override
     public void stopMoving() {
         System.out.println("Автомобиль " + getBrand() + " закончил движение");
+    }
+
+    @Override
+    public void printType() {
+        if (carBodyType == null) {
+            System.out.println("Данных по транспортному средству недостаточно");
+        } else {
+            System.out.println("Легковой автомобиль : " + getBrand() + ", марка : " + getModel() + ", " + carBodyType);
+        }
     }
 
     @Override
