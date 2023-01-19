@@ -1,21 +1,21 @@
 package oop1.transport;
 
-import oop1.transport.drivers.DriveC;
 import oop1.transport.drivers.DriverB;
 
 public class Car extends Transport<DriverB>{
 
-    BodyType bodyType;
+    private CarBodyType carBodyType;
 
      public Car(String brand,
                String model,
                double engineVolume,
-               DriverB driver, BodyType bodyType) {
+               DriverB driver, CarBodyType carBodyType) {
 
             super(brand, model, engineVolume, driver);
+            this.carBodyType = carBodyType;
     }
 
-    public enum BodyType {
+    public enum CarBodyType {
         SEDAN("Седан"),
         HATCHBACK("Хетчбэк"),
         COUPE("Купе"),
@@ -28,16 +28,17 @@ public class Car extends Transport<DriverB>{
 
         private String bodyType;
 
-        BodyType(String bodyType) {
+        CarBodyType(String bodyType) {
             this.bodyType = bodyType;
         }
         public String getBodyType() {
-            return bodyType;
+            return this.bodyType;
         }
         @Override
         public String toString() {
-            return "Тип кузова: <"+ BodyType.valueOf(bodyType)+">";
+            return "тип кузова: <" + bodyType +">";
         }
+
     }
 
     @Override
@@ -73,6 +74,6 @@ public class Car extends Transport<DriverB>{
 
     @Override
     public String toString() {
-        return super.toString()+bodyType.getBodyType().toString();
+        return super.toString() + ", " + carBodyType.toString();
     }
 }

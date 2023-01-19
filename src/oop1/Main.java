@@ -12,12 +12,12 @@ public class Main {
 
 
         for (int i = 1; i <= 4; i++) {
-            DriverB driverB = new DriverB("Водитель категории B №" + i, false, i);
+            DriverB driverB = new DriverB("Водитель категории B №" + i, true, i);
             Car car = new Car("Lada_" + i,
-                    "Vesta Sport ",
+                    "Vesta Sport",
                     1.7,
                     driverB,
-                    Car.BodyType.SEDAN
+                    Car.CarBodyType.SEDAN
             );
             DriveC driverC = new DriveC("Водитель категории C №" + i, true, i + 3);
             Bus bus = new Bus("Volzhanin_" + i,
@@ -33,6 +33,7 @@ public class Main {
             );
             System.out.println("-------------------------");
             System.out.println(car);
+/*
             car.pitStop();
             car.bestTimeCircle();
             car.maximumSpeed();
@@ -53,6 +54,7 @@ public class Main {
             printInfoCompeting(car);
             printInfoCompeting(bus);
             printInfoCompeting(truck);
+*/
         }
     }
     private static void printInfoCompeting(Transport<?> transport){
