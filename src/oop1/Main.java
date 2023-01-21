@@ -14,36 +14,45 @@ public class Main {
         for (int i = 1; i <= 4; i++) {
             DriverB driverB = new DriverB("Водитель категории B №" + i, false, i);
             Car car = new Car("Lada_" + i,
-                    "Vesta Sport ",
+                    "Vesta Sport",
                     1.7,
-                    driverB
+                    driverB,
+                    Car.CarBodyType.SEDAN
             );
             DriveC driverC = new DriveC("Водитель категории C №" + i, true, i + 3);
             Bus bus = new Bus("Volzhanin_" + i,
                     "Liner",
                     2.5,
-                    driverC
+                    driverC,
+                    Bus.CapacityBus.EXTRA_SMALL
             );
             DriverD driverD = new DriverD("Водитель категории D №" + i, true, i + 5);
             Truck truck = new Truck("Kamaz_" + i,
                     "Travel",
                     3.5,
-                    driverD
+                    driverD,
+                    Truck.WeightTruck.N3
             );
             System.out.println("-------------------------");
             System.out.println(car);
+
+            car.printType();
             car.pitStop();
             car.bestTimeCircle();
             car.maximumSpeed();
 
             System.out.println("-------------------------");
             System.out.println(bus);
+
+            bus.printType();
             bus.pitStop();
             bus.bestTimeCircle();
             bus.maximumSpeed();
 
             System.out.println("-------------------------");
             System.out.println(truck);
+
+            truck.printType();
             truck.pitStop();
             truck.bestTimeCircle();
             truck.maximumSpeed();
@@ -52,6 +61,7 @@ public class Main {
             printInfoCompeting(car);
             printInfoCompeting(bus);
             printInfoCompeting(truck);
+
         }
     }
     private static void printInfoCompeting(Transport<?> transport){

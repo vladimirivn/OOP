@@ -1,16 +1,49 @@
 package oop1.transport;
 
-import oop1.transport.drivers.DriveC;
 import oop1.transport.drivers.DriverB;
 
 public class Car extends Transport<DriverB>{
+    private CarBodyType carBodyType;
 
-    public Car(String brand,
+     public Car(String brand,
                String model,
                double engineVolume,
-               DriverB driver) {
+               DriverB driver,
+               CarBodyType carBodyType) {
 
-        super(brand, model, engineVolume, driver);
+            super(brand, model, engineVolume, driver);
+
+            this.carBodyType = carBodyType;
+    }
+
+    public enum CarBodyType {
+        SEDAN("Седан"),
+        HATCHBACK("Хетчбэк"),
+        COUPE("Купе"),
+        WAGON("Универсал"),
+        OFF_ROAD("Внедорожник"),
+        CROSSOVER("Кроссовер"),
+        PICKUP_TRUCK("Пикап"),
+        VAN("Фургон"),
+        MINIVAN("Минивэн");
+
+        private String bodyType;
+
+        CarBodyType(String bodyType) {
+
+            setBodyType(bodyType);
+        }
+        public String getBodyType() {
+            return this.bodyType;
+        }
+        public void setBodyType(String bodyType) {
+            this.bodyType = bodyType;
+        }
+
+        @Override
+        public String toString() {
+            return "тип кузова: <" + bodyType +">";
+        }
 
     }
 
@@ -46,8 +79,16 @@ public class Car extends Transport<DriverB>{
     }
 
     @Override
-    public String toString() {
-        return super.toString() + " - легковой автомобиль";
+    public void printType() {
+        if (carBodyType == null) {
+            System.out.println("Данных по транспортному средству недостаточно");
+        } else {
+            System.out.println("Легковой автомобиль : " + getBrand() + ", марка : " + getModel() + ", " + carBodyType);
+        }
     }
 
+    @Override
+    public String toString() {
+        return super.toString() + ", " + carBodyType.toString();
+    }
 }

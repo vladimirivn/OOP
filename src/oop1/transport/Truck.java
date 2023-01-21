@@ -3,14 +3,52 @@ package oop1.transport;
 import oop1.transport.drivers.DriverD;
 
 public class Truck extends Transport<DriverD>{
+    private WeightTruck weightTruck;
     public Truck(String brand,
                  String model,
                  double engineVolume,
-                 DriverD driver) {
+                 DriverD driver,
+                 WeightTruck weightTruck) {
 
         super(brand, model, engineVolume, driver);
-    }
 
+        this.weightTruck = weightTruck;
+    }
+    public enum WeightTruck {
+
+        N1(0F,3.5F),
+        N2(3.5F,12F),
+        N3(12F, null);
+
+        private Float weightFrom;
+        private Float weightTo;
+
+        WeightTruck(Float weightFrom,
+                    Float weightTo) {
+
+            setWeightFrom(weightFrom);
+            setWeightTo(weightTo);
+        }
+        public Float getWeightFrom() {
+            return weightFrom;
+        }
+        public void setWeightFrom(Float weightFrom) {
+            this.weightFrom = weightFrom;
+        }
+        public Float getWeightTo() {
+            return weightTo;
+        }
+        public void setWeightTo(Float weightTo) {
+            this.weightTo = weightTo;
+        }
+
+        @Override
+        public String toString() {
+            String from = getWeightFrom() == null ? "" : "от <"+ getWeightFrom() +  "> тонн";
+            String to = getWeightTo() == null ? "" : " до <"+ getWeightTo() +  "> тонн";
+            return "Грузоподъемность : " + from + to;
+        }
+    }
     @Override
     public void pitStop() {
         System.out.println("Грузовой автомобиль " + getBrand() + " остановился");
@@ -43,7 +81,16 @@ public class Truck extends Transport<DriverD>{
     }
 
     @Override
+    public void printType() {
+        if (weightTruck == null) {
+            System.out.println("Данных по транспортному средству недостаточно");
+        } else {
+            System.out.println(weightTruck);
+        }
+    }
+
+    @Override
     public String toString() {
-        return super.toString() + " - грузовой автомобиль";
+        return super.toString() + " " + weightTruck.toString();
     }
 }

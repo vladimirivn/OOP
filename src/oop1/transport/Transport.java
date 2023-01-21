@@ -31,6 +31,7 @@ public abstract class Transport<T extends Driver> implements Competing {
     }
     public abstract void startMoving();
     public abstract void stopMoving();
+    public abstract void printType();
 
     public String getBrand() {
         return brand;
