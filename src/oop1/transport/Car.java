@@ -1,6 +1,8 @@
 package oop1.transport;
 
 import oop1.transport.drivers.DriverB;
+import oop1.transport.exception.CantFindLicenseException;
+import oop1.transport.exception.WrongLicenseException;
 
 public class Car extends Transport<DriverB>{
     private CarBodyType carBodyType;
@@ -84,6 +86,19 @@ public class Car extends Transport<DriverB>{
             System.out.println("Данных по транспортному средству недостаточно");
         } else {
             System.out.println("Легковой автомобиль : " + getBrand() + ", марка : " + getModel() + ", " + carBodyType);
+        }
+    }
+
+    @Override
+    public void passDiagnostics() throws CantFindLicenseException, WrongLicenseException {
+
+        if (!getDriver().isDriversLicense()) {
+             throw new CantFindLicenseException(getDriver().getFullName() + " не имеет прав, диагностика не пройдена");
+        } else if (getDriver().getClass() != DriverB.class) {
+             throw new WrongLicenseException("Некорректный тип прав водителя!");
+        } else {
+                System.out.println(getDriver().getFullName() +
+                " имеет соответствующую категорию прав: " + getDriver().getClass() + ", диагностика пройдена");
         }
     }
 

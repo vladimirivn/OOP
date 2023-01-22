@@ -6,13 +6,14 @@ import oop1.transport.Truck;
 import oop1.transport.drivers.DriveC;
 import oop1.transport.drivers.DriverB;
 import oop1.transport.drivers.DriverD;
+import oop1.transport.exception.CantFindLicenseException;
+import oop1.transport.exception.WrongLicenseException;
 
 public class Main {
     public static void main(String[] args) {
 
-
         for (int i = 1; i <= 4; i++) {
-            DriverB driverB = new DriverB("Водитель категории B №" + i, false, i);
+            DriverB driverB = new DriverB("Водитель категории B №" + i, true, i);
             Car car = new Car("Lada_" + i,
                     "Vesta Sport",
                     1.7,
@@ -40,6 +41,11 @@ public class Main {
             car.pitStop();
             car.bestTimeCircle();
             car.maximumSpeed();
+            try {
+                car.passDiagnostics();
+            } catch (CantFindLicenseException | WrongLicenseException e) {
+                System.out.println(e.getMessage());
+            }
 
             System.out.println("-------------------------");
             System.out.println(bus);
@@ -48,6 +54,11 @@ public class Main {
             bus.pitStop();
             bus.bestTimeCircle();
             bus.maximumSpeed();
+            try {
+                bus.passDiagnostics();
+            } catch (CantFindLicenseException | WrongLicenseException e) {
+                System.out.println(e.getMessage());
+            }
 
             System.out.println("-------------------------");
             System.out.println(truck);
@@ -56,12 +67,16 @@ public class Main {
             truck.pitStop();
             truck.bestTimeCircle();
             truck.maximumSpeed();
+            try {
+                truck.passDiagnostics();
+            } catch (CantFindLicenseException | WrongLicenseException e) {
+                System.out.println(e.getMessage());
+            }
 
             System.out.println("----------- Заезды --------------");
             printInfoCompeting(car);
             printInfoCompeting(bus);
             printInfoCompeting(truck);
-
         }
     }
     private static void printInfoCompeting(Transport<?> transport){

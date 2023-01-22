@@ -1,5 +1,8 @@
 package oop1.transport;
 
+import oop1.transport.exception.CantFindLicenseException;
+import oop1.transport.exception.WrongLicenseException;
+
 public abstract class Transport<T extends Driver> implements Competing {
     private final String brand; // Марка
     private final String model; // Модель
@@ -32,6 +35,7 @@ public abstract class Transport<T extends Driver> implements Competing {
     public abstract void startMoving();
     public abstract void stopMoving();
     public abstract void printType();
+    public abstract void passDiagnostics() throws CantFindLicenseException, WrongLicenseException;
 
     public String getBrand() {
         return brand;

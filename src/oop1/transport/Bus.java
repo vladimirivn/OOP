@@ -1,6 +1,7 @@
 package oop1.transport;
 
 import oop1.transport.drivers.DriveC;
+import oop1.transport.exception.CantFindLicenseException;
 
 public class Bus extends Transport<DriveC> {
 
@@ -92,6 +93,11 @@ public class Bus extends Transport<DriveC> {
         } else {
             System.out.println(capacityBus);
         }
+    }
+
+    @Override
+    public void passDiagnostics() throws CantFindLicenseException {
+        System.out.println("Автобусы диагностику не проходят");
     }
 
     @Override
