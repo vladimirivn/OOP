@@ -46,4 +46,9 @@ public abstract class Driver {
     public void setDrivingExperience(int drivingExperience) {
         this.drivingExperience = drivingExperience;
     }
+
+    @Override
+    public String toString() {
+        return fullName ;
+    }
 }
