@@ -1,5 +1,6 @@
 package oop1.transport;
 
+import oop1.transport.drivers.Driver;
 import oop1.transport.exception.CantFindLicenseException;
 import oop1.transport.exception.WrongLicenseException;
 
@@ -39,8 +40,7 @@ public abstract class Transport<T extends Driver> implements Competing {
 
     public abstract void printType();
 
-    public abstract void passDiagnostics() throws CantFindLicenseException;
-//    , WrongLicenseException;
+    public abstract void passDiagnostics() throws  WrongLicenseException, CantFindLicenseException;
 
     public String getBrand() {
         return brand;

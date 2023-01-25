@@ -44,8 +44,7 @@ public class Main {
             car.maximumSpeed();
             try {
                 car.passDiagnostics();
-            } catch (CantFindLicenseException e){
-//                     | WrongLicenseException e) {
+            } catch (CantFindLicenseException | WrongLicenseException e) {
                 System.out.println(e.getMessage());
             }
 
@@ -59,8 +58,6 @@ public class Main {
             try {
                 bus.passDiagnostics();
             } catch (CantFindLicenseException e) {
-//                |
-//            } WrongLicenseException e) {
                 System.out.println(e.getMessage());
             }
 
@@ -71,18 +68,18 @@ public class Main {
             truck.pitStop();
             truck.bestTimeCircle();
             truck.maximumSpeed();
+
             try {
                 truck.passDiagnostics();
-            } catch (CantFindLicenseException e) {
-//                |
-//            } WrongLicenseException e) {
+            } catch (CantFindLicenseException | WrongLicenseException e) {
                 System.out.println(e.getMessage());
             }
 
-            System.out.println("----------- Заезды --------------");
-            printInfoCompeting(car);
-            printInfoCompeting(bus);
-            printInfoCompeting(truck);
+
+//            System.out.println("----------- Заезды --------------");
+//            printInfoCompeting(car);
+//            printInfoCompeting(bus);
+//            printInfoCompeting(truck);
         }
     }
 

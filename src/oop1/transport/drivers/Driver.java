@@ -1,4 +1,4 @@
-package oop1.transport;
+package oop1.transport.drivers;
 
 public abstract class Driver {
     private String fullName;
