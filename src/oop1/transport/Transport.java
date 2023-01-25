@@ -1,5 +1,8 @@
 package oop1.transport;
 
+import oop1.transport.exception.CantFindLicenseException;
+import oop1.transport.exception.WrongLicenseException;
+
 public abstract class Transport<T extends Driver> implements Competing {
     private final String brand; // Марка
     private final String model; // Модель
@@ -15,12 +18,12 @@ public abstract class Transport<T extends Driver> implements Competing {
                      double engineVolume,
                      T driver) {
 
-        if(brand == null || brand.isBlank() || brand.isEmpty()) {
+        if (brand == null || brand.isBlank() || brand.isEmpty()) {
             this.brand = DEFAULT_VALUE;
         } else {
             this.brand = brand;
         }
-        if(model == null || model.isBlank() || model.isEmpty()) {
+        if (model == null || model.isBlank() || model.isEmpty()) {
             this.model = DEFAULT_VALUE;
         } else {
             this.model = model;
@@ -29,21 +32,30 @@ public abstract class Transport<T extends Driver> implements Competing {
         setEngineVolume(engineVolume);
         setDriver(driver);
     }
+
     public abstract void startMoving();
+
     public abstract void stopMoving();
+
     public abstract void printType();
+
+    public abstract void passDiagnostics() throws CantFindLicenseException;
+//    , WrongLicenseException;
 
     public String getBrand() {
         return brand;
     }
+
     public String getModel() {
         return model;
     }
+
     public double getEngineVolume() {
         return engineVolume;
     }
+
     public void setEngineVolume(double engineVolume) {
-        if(engineVolume <= 0) {
+        if (engineVolume <= 0) {
             this.engineVolume = DEFAULT_ENGINE_VOLUME;
         } else {
             this.engineVolume = engineVolume;

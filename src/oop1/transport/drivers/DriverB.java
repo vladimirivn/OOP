@@ -13,14 +13,16 @@ public class DriverB extends Driver {
 
     @Override
     public void startMoving() {
-        System.out.println("Водитель с правами категории B "+ getFullName() + " начал движение");
+        System.out.println("Водитель с правами категории B " + getFullName() + " начал движение");
     }
+
     @Override
     public void stopMoving() {
-        System.out.println("Водитель с правами категории B "+ getFullName() + " закончил движение");
+        System.out.println("Водитель с правами категории B " + getFullName() + " закончил движение");
     }
+
     @Override
     public void refuelAuto() {
-        System.out.println("Водитель с правами категории B "+ getFullName() + " заправляет автомобиль");
+        System.out.println("Водитель с правами категории B " + getFullName() + " заправляет автомобиль");
     }
 }

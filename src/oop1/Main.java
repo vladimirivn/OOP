@@ -1,4 +1,5 @@
 package oop1;
+
 import oop1.transport.Car;
 import oop1.transport.Bus;
 import oop1.transport.Transport;
@@ -6,10 +7,11 @@ import oop1.transport.Truck;
 import oop1.transport.drivers.DriveC;
 import oop1.transport.drivers.DriverB;
 import oop1.transport.drivers.DriverD;
+import oop1.transport.exception.CantFindLicenseException;
+import oop1.transport.exception.WrongLicenseException;
 
 public class Main {
     public static void main(String[] args) {
-
 
         for (int i = 1; i <= 4; i++) {
             DriverB driverB = new DriverB("Водитель категории B №" + i, false, i);
@@ -40,6 +42,12 @@ public class Main {
             car.pitStop();
             car.bestTimeCircle();
             car.maximumSpeed();
+            try {
+                car.passDiagnostics();
+            } catch (CantFindLicenseException e){
+//                     | WrongLicenseException e) {
+                System.out.println(e.getMessage());
+            }
 
             System.out.println("-------------------------");
             System.out.println(bus);
@@ -48,6 +56,13 @@ public class Main {
             bus.pitStop();
             bus.bestTimeCircle();
             bus.maximumSpeed();
+            try {
+                bus.passDiagnostics();
+            } catch (CantFindLicenseException e) {
+//                |
+//            } WrongLicenseException e) {
+                System.out.println(e.getMessage());
+            }
 
             System.out.println("-------------------------");
             System.out.println(truck);
@@ -56,15 +71,22 @@ public class Main {
             truck.pitStop();
             truck.bestTimeCircle();
             truck.maximumSpeed();
+            try {
+                truck.passDiagnostics();
+            } catch (CantFindLicenseException e) {
+//                |
+//            } WrongLicenseException e) {
+                System.out.println(e.getMessage());
+            }
 
             System.out.println("----------- Заезды --------------");
             printInfoCompeting(car);
             printInfoCompeting(bus);
             printInfoCompeting(truck);
-
         }
     }
-    private static void printInfoCompeting(Transport<?> transport){
+
+    private static void printInfoCompeting(Transport<?> transport) {
         if (transport.getDriver().isDriversLicense()) {
             System.out.println("водитель " + transport.getDriver().getFullName() +
                     " управляет автомобилем " + transport.getBrand() + " и будет участвовать в заезде");

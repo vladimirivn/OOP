@@ -1,6 +1,7 @@
 package oop1.transport;
 
 import oop1.transport.drivers.DriveC;
+import oop1.transport.exception.CantFindLicenseException;
 
 public class Bus extends Transport<DriveC> {
 
@@ -17,6 +18,7 @@ public class Bus extends Transport<DriveC> {
         this.capacityBus = capacityBus;
 
     }
+
     public enum CapacityBus {
         EXTRA_SMALL(0, 10),
         SMALL(10, 25),
@@ -37,6 +39,7 @@ public class Bus extends Transport<DriveC> {
         public int getCapacityFrom() {
             return capacityFrom;
         }
+
         public void setCapacityFrom(int capacityFrom) {
             this.capacityFrom = capacityFrom;
         }
@@ -44,14 +47,15 @@ public class Bus extends Transport<DriveC> {
         public int getCapacityTo() {
             return capacityTo;
         }
+
         public void setCapacityTo(int capacityTo) {
             this.capacityTo = capacityTo;
         }
 
         @Override
         public String toString() {
-            String from = getCapacityFrom() <= 0 ? "" : "от <"+ getCapacityFrom() +  "> мест";
-            String to = getCapacityTo() <= 0 ? "" : " до <"+ getCapacityTo() +  "> мест";
+            String from = getCapacityFrom() <= 0 ? "" : "от <" + getCapacityFrom() + "> мест";
+            String to = getCapacityTo() <= 0 ? "" : " до <" + getCapacityTo() + "> мест";
             return "Вместимость : " + from + to;
         }
     }
@@ -60,18 +64,20 @@ public class Bus extends Transport<DriveC> {
     public void pitStop() {
         System.out.println("Автобус " + getBrand() + " остановился");
     }
+
     @Override
     public void bestTimeCircle() {
         int minTimeLap = 5;
         int maxTimeLap = 9;
-        int bestTimeLap = (int) (minTimeLap + (maxTimeLap - minTimeLap)* Math.random());
+        int bestTimeLap = (int) (minTimeLap + (maxTimeLap - minTimeLap) * Math.random());
         System.out.println("Лучшее время круга автобуса " + getBrand() + " :" + bestTimeLap);
     }
+
     @Override
     public void maximumSpeed() {
         int minSpeed = 80;
         int maxSpeed = 150;
-        int bestSpeed = (int) (minSpeed + (maxSpeed - minSpeed)* Math.random());
+        int bestSpeed = (int) (minSpeed + (maxSpeed - minSpeed) * Math.random());
         System.out.println("Максимальная скорость автобуса " + getBrand() + " :" + bestSpeed);
     }
 
@@ -92,6 +98,11 @@ public class Bus extends Transport<DriveC> {
         } else {
             System.out.println(capacityBus);
         }
+    }
+
+    @Override
+    public void passDiagnostics() throws CantFindLicenseException {
+        System.out.println("Автобусы диагностику не проходят");
     }
 
     @Override
