@@ -1,4 +1,5 @@
 package oop1;
+
 import oop1.transport.Car;
 import oop1.transport.Bus;
 import oop1.transport.Transport;
@@ -13,7 +14,7 @@ public class Main {
     public static void main(String[] args) {
 
         for (int i = 1; i <= 4; i++) {
-            DriverB driverB = new DriverB("Водитель категории B №" + i, true, i);
+            DriverB driverB = new DriverB("Водитель категории B №" + i, false, i);
             Car car = new Car("Lada_" + i,
                     "Vesta Sport",
                     1.7,
@@ -43,7 +44,8 @@ public class Main {
             car.maximumSpeed();
             try {
                 car.passDiagnostics();
-            } catch (CantFindLicenseException | WrongLicenseException e) {
+            } catch (CantFindLicenseException e){
+//                     | WrongLicenseException e) {
                 System.out.println(e.getMessage());
             }
 
@@ -56,7 +58,9 @@ public class Main {
             bus.maximumSpeed();
             try {
                 bus.passDiagnostics();
-            } catch (CantFindLicenseException | WrongLicenseException e) {
+            } catch (CantFindLicenseException e) {
+//                |
+//            } WrongLicenseException e) {
                 System.out.println(e.getMessage());
             }
 
@@ -69,7 +73,9 @@ public class Main {
             truck.maximumSpeed();
             try {
                 truck.passDiagnostics();
-            } catch (CantFindLicenseException | WrongLicenseException e) {
+            } catch (CantFindLicenseException e) {
+//                |
+//            } WrongLicenseException e) {
                 System.out.println(e.getMessage());
             }
 
@@ -79,7 +85,8 @@ public class Main {
             printInfoCompeting(truck);
         }
     }
-    private static void printInfoCompeting(Transport<?> transport){
+
+    private static void printInfoCompeting(Transport<?> transport) {
         if (transport.getDriver().isDriversLicense()) {
             System.out.println("водитель " + transport.getDriver().getFullName() +
                     " управляет автомобилем " + transport.getBrand() + " и будет участвовать в заезде");

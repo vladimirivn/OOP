@@ -24,7 +24,7 @@ public abstract class Driver {
     }
 
     public void setFullName(String fullName) {
-        if(fullName == null || fullName.isBlank() || fullName.isEmpty()) {
+        if (fullName == null || fullName.isBlank() || fullName.isEmpty()) {
             this.fullName = DEFAULT_VALUE;
         } else {
             this.fullName = fullName;
