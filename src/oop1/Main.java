@@ -92,7 +92,7 @@ public class Main {
         drivers.add(driverC);
         drivers.add(driverD);
 
-        Mechanic mechanic1 = new Mechanic("Ivanov", "B Motors");
+        Mechanic mechanic1 = new Mechanic("", "B Motors");
         Mechanic mechanic2 = new Mechanic("Pavlov", "B Motors");
         Mechanic mechanic3 = new Mechanic("Kotov", "C Motors");
         Mechanic mechanic4 = new Mechanic("Pomidorov", "D Motors");

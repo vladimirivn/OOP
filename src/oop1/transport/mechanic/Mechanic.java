@@ -39,7 +39,7 @@ public class Mechanic {
         if (company == null || company.isBlank() || company.isEmpty()) {
             this.company = "Default Company";
         } else {
-            this.name = company;
+            this.company = company;
         }
     }
 
