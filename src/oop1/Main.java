@@ -8,7 +8,7 @@ import oop1.transport.drivers.DriverD;
 import oop1.transport.exception.CantFindLicenseException;
 import oop1.transport.exception.WrongLicenseException;
 import oop1.transport.mechanic.Mechanic;
-import oop1.transport.mechanic.TransportType;
+import oop1.transport.mechanic.ServiceStation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -85,42 +85,50 @@ public class Main {
         printInfoCompeting(truck);
 
         System.out.println("-------------------------");
+
         List<Driver> drivers = new ArrayList<>();
 
         drivers.add(driverB);
         drivers.add(driverC);
         drivers.add(driverD);
 
-        Mechanic mechanic1 = new Mechanic("Ivanov", "B Motors", TransportType.CAR);
-        Mechanic mechanic2 = new Mechanic("Pavlov", "B Motors", TransportType.CAR);
-        Mechanic mechanic3 = new Mechanic("Petrov", "C Motors", TransportType.BUS);
-        Mechanic mechanic4 = new Mechanic("Kotov", "C Motors", TransportType.BUS);
-        Mechanic mechanic5 = new Mechanic("Sidorov", "D Motors", TransportType.TRUCK);
-        Mechanic mechanic6 = new Mechanic("Pomidorov", "D Motors", TransportType.TRUCK);
+        Mechanic mechanic1 = new Mechanic("Ivanov", "B Motors");
+        Mechanic mechanic2 = new Mechanic("Pavlov", "B Motors");
+        Mechanic mechanic3 = new Mechanic("Kotov", "C Motors");
+        Mechanic mechanic4 = new Mechanic("Pomidorov", "D Motors");
 
 
         car.addMechanic(mechanic1);
         car.addMechanic(mechanic2);
 
+        bus.addMechanic(mechanic1);
         bus.addMechanic(mechanic3);
-        bus.addMechanic(mechanic4);
 
-        truck.addMechanic(mechanic5);
-        truck.addMechanic(mechanic6);
+        truck.addMechanic(mechanic1);
+        truck.addMechanic(mechanic4);
 
+        List<Transport<?>> racingList = new ArrayList<>();
 
-        List<Transport<?>> racers = new ArrayList<>();
+        racingList.add(car);
+        racingList.add(bus);
+        racingList.add(truck);
 
-        racers.add(car);
-        racers.add(bus);
-        racers.add(truck);
+        System.out.println("-----добавление автотранспорта в очередь --------------------");
+        ServiceStation serviceStation = new ServiceStation();
+        serviceStation.addTransportToQueue(car);
+        serviceStation.addTransportToQueue(bus);
+        serviceStation.addTransportToQueue(truck);
 
-        for (Transport<?> transport : racers) {
-            System.out.println(transport + " " + transport.getDriver() + " " + transport.getMechanics());
+        System.out.println("------------вывод списка всех автомобилей ----------------------------");
+        for (Transport<?> transport : racingList) {
+            System.out.println(transport.getBrand() + " " + transport.getDriver() + " " + transport.getMechanics());
+        }
+        System.out.println("------------ Техобслуживание автомобилей ----------------------------");
+        for (Transport<?> transport : racingList) {
+            serviceStation.startMaintenance();
         }
 
     }
-
 
     private static void printInfoCompeting(Transport<?> transport) {
         if (transport.getDriver().isDriversLicense()) {

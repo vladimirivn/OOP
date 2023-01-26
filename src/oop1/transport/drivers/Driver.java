@@ -4,7 +4,6 @@ public abstract class Driver {
     private String fullName;
     private boolean driversLicense;
     private int drivingExperience;
-
     private static final String DEFAULT_VALUE = "default";
 
     public Driver(String fullName, boolean driversLicense, int drivingExperience) {
@@ -49,6 +48,6 @@ public abstract class Driver {
 
     @Override
     public String toString() {
-        return fullName ;
+        return fullName;
     }
 }

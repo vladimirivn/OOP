@@ -46,7 +46,7 @@ public abstract class Transport<T extends Driver> implements Competing {
 
     public abstract void printType();
 
-    public abstract void passDiagnostics() throws  WrongLicenseException, CantFindLicenseException;
+    public abstract void passDiagnostics() throws WrongLicenseException, CantFindLicenseException;
 
     public String getBrand() {
         return brand;
@@ -67,6 +67,7 @@ public abstract class Transport<T extends Driver> implements Competing {
             this.engineVolume = engineVolume;
         }
     }
+
     public T getDriver() {
         return driver;
     }
@@ -74,12 +75,15 @@ public abstract class Transport<T extends Driver> implements Competing {
     public void setDriver(T driver) {
         this.driver = driver;
     }
+
     public List<Mechanic> getMechanics() {
         return mechanics;
     }
-    public void addMechanic(Mechanic mechanic){
+
+    public void addMechanic(Mechanic mechanic) {
         mechanics.add(mechanic);
     }
+
     @Override
     public String toString() {
         return "Марка: " + brand + ", модель: " + model + ", объем двигателя: " + engineVolume;

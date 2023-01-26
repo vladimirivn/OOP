@@ -1,25 +1,29 @@
 package oop1.transport.mechanic;
 
+import oop1.transport.Transport;
+
 public class Mechanic {
     private String name;
     private String company;
 
-    private TransportType transportType;
+//    private TransportType transportType;
 
-    public Mechanic(String name, String company, TransportType transportType) {
+    //    public Mechanic(String name, String company, TransportType transportType) {
+    public Mechanic(String name, String company) {
         this.name = name;
         this.company = company;
-        this.transportType = transportType;
+//        this.transportType = transportType;
     }
 
 
-    public void maintenance(){
+    public void maintenance() {
         System.out.println("Механик " + getName() + " из компании " + getCompany() + " проводит техобслуживание");
     }
 
-    public void repair(){
+    public void repair() {
         System.out.println("Механик " + getName() + " из компании " + getCompany() + " производит ремонт");
     }
+
     public String getName() {
         return name;
     }
@@ -36,8 +40,9 @@ public class Mechanic {
         this.company = company;
     }
 
+
     @Override
     public String toString() {
-        return "Механик: " + name + ", компания: " + company ;
+        return "Механик: " + name + ", компания: " + company;
     }
 }
