@@ -6,15 +6,10 @@ public class Mechanic {
     private String name;
     private String company;
 
-//    private TransportType transportType;
-
-    //    public Mechanic(String name, String company, TransportType transportType) {
     public Mechanic(String name, String company) {
-        this.name = name;
-        this.company = company;
-//        this.transportType = transportType;
+        setName(name);
+        setCompany(company);
     }
-
 
     public void maintenance() {
         System.out.println("Механик " + getName() + " из компании " + getCompany() + " проводит техобслуживание");
@@ -29,7 +24,11 @@ public class Mechanic {
     }
 
     public void setName(String name) {
-        this.name = name;
+        if (name == null || name.isBlank() || name.isEmpty()) {
+            this.name = "Default Name";
+        } else {
+            this.name = name;
+        }
     }
 
     public String getCompany() {
@@ -37,7 +36,11 @@ public class Mechanic {
     }
 
     public void setCompany(String company) {
-        this.company = company;
+        if (company == null || company.isBlank() || company.isEmpty()) {
+            this.company = "Default Company";
+        } else {
+            this.name = company;
+        }
     }
 
 
