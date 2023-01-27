@@ -1,7 +1,12 @@
 package oop1.transport;
 
+import oop1.transport.drivers.Driver;
 import oop1.transport.exception.CantFindLicenseException;
 import oop1.transport.exception.WrongLicenseException;
+import oop1.transport.mechanic.Mechanic;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Transport<T extends Driver> implements Competing {
     private final String brand; // Марка
@@ -9,6 +14,8 @@ public abstract class Transport<T extends Driver> implements Competing {
     private double engineVolume; //Объем двигателя
 
     private T driver;
+
+    private final List<Mechanic> mechanics = new ArrayList<>();
 
     private static final String DEFAULT_VALUE = "default";
     private static final double DEFAULT_ENGINE_VOLUME = 1.5;
@@ -39,8 +46,7 @@ public abstract class Transport<T extends Driver> implements Competing {
 
     public abstract void printType();
 
-    public abstract void passDiagnostics() throws CantFindLicenseException;
-//    , WrongLicenseException;
+    public abstract void passDiagnostics() throws WrongLicenseException, CantFindLicenseException;
 
     public String getBrand() {
         return brand;
@@ -68,6 +74,14 @@ public abstract class Transport<T extends Driver> implements Competing {
 
     public void setDriver(T driver) {
         this.driver = driver;
+    }
+
+    public List<Mechanic> getMechanics() {
+        return mechanics;
+    }
+
+    public void addMechanic(Mechanic mechanic) {
+        mechanics.add(mechanic);
     }
 
     @Override

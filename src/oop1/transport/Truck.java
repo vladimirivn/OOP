@@ -100,14 +100,12 @@ public class Truck extends Transport<DriverD> {
     }
 
     @Override
-    public void passDiagnostics() throws CantFindLicenseException {
-//    }, WrongLicenseException {
+    public void passDiagnostics() throws WrongLicenseException, CantFindLicenseException {
 
-        if (!getDriver().isDriversLicense()) {
+        if (getDriver() == null) {
+            throw new WrongLicenseException("Некорректный тип прав водителя!");
+        } else if (!getDriver().isDriversLicense()) {
             throw new CantFindLicenseException(getDriver().getFullName() + " не имеет прав, диагностика не пройдена");
-
-//        else if (getDriver().getClass() != DriverD.class) {
-//            throw new WrongLicenseException("Некорректный тип прав водителя!");
         } else {
             System.out.println(getDriver().getFullName() +
                     " имеет соответствующую категорию прав: " + getDriver().getClass() + ", диагностика пройдена");
