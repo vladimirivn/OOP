@@ -99,12 +99,14 @@ public class Main {
 
 
         car.addMechanic(mechanic1);
+        car.addMechanic(mechanic1); // добавим второй раз для проверки множества
         car.addMechanic(mechanic2);
 
         bus.addMechanic(mechanic1);
         bus.addMechanic(mechanic3);
 
         truck.addMechanic(mechanic1);
+        truck.addMechanic(mechanic4);
         truck.addMechanic(mechanic4);
 
         List<Transport<?>> racingList = new ArrayList<>();
