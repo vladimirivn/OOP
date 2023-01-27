@@ -10,8 +10,7 @@ import oop1.transport.exception.WrongLicenseException;
 import oop1.transport.mechanic.Mechanic;
 import oop1.transport.mechanic.ServiceStation;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -116,20 +115,37 @@ public class Main {
         racingList.add(truck);
 
         System.out.println("-----добавление автотранспорта в очередь --------------------");
+
         ServiceStation serviceStation = new ServiceStation();
         serviceStation.addTransportToQueue(car);
         serviceStation.addTransportToQueue(bus);
         serviceStation.addTransportToQueue(truck);
 
         System.out.println("------------вывод списка всех автомобилей ----------------------------");
+
         for (Transport<?> transport : racingList) {
             System.out.println(transport.getBrand() + " " + transport.getDriver() + " " + transport.getMechanics());
         }
         System.out.println("------------ Техобслуживание автомобилей ----------------------------");
+
         for (Transport<?> transport : racingList) {
             serviceStation.startMaintenance();
         }
 
+        System.out.println("------------ Map ----------------------------");
+
+        Map<Transport<?>, Mechanic> transportMechanicMap = new HashMap<>();
+
+        for (Transport<?> racer : racingList) {
+            for (Mechanic mechanic : racer.getMechanics()) {
+                transportMechanicMap.put(racer, mechanic);
+            }
+            Set<Mechanic> mechanics = racingList.iterator().next().getMechanics();
+        }
+
+        for (Map.Entry<Transport<?>, Mechanic> entry : transportMechanicMap.entrySet()) {
+            System.out.println("Ключ ( " + entry.getKey() + " ) ---> Значение ( " + entry.getValue() + " )");
+        }
     }
 
     private static void printInfoCompeting(Transport<?> transport) {
