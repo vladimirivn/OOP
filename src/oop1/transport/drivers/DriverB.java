@@ -1,7 +1,5 @@
 package oop1.transport.drivers;
 
-import oop1.transport.Driver;
-
 public class DriverB extends Driver {
 
     public DriverB(String fullName,
