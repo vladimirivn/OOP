@@ -89,26 +89,24 @@ public class Main {
         drivers.add(driverB);
         drivers.add(driverC);
         drivers.add(driverD);
-        drivers.add(driverB);
 
         System.out.println(drivers);
 
-        Mechanic mechanic1 = new Mechanic("Ivanov", "A Motors");
-        Mechanic mechanic2 = new Mechanic("Pavlov", "B Motors");
-        Mechanic mechanic3 = new Mechanic("Kotov", "C Motors");
-        Mechanic mechanic4 = new Mechanic("Pomidorov", "D Motors");
+        Mechanic mechanic1 = new Mechanic("Ivanov", "B Motors");
+        Mechanic mechanic2 = new Mechanic("Pavlov", "C Motors");
+        Mechanic mechanic3 = new Mechanic("Pomidorov", "D Motors");
 
 
         car.addMechanic(mechanic1);
 //        car.addMechanic(mechanic1);
-        car.addMechanic(mechanic2);
+//        car.addMechanic(mechanic2);
 
-        bus.addMechanic(mechanic1);
-        bus.addMechanic(mechanic3);
+//        bus.addMechanic(mechanic1);
+        bus.addMechanic(mechanic2);
 
-        truck.addMechanic(mechanic1);
-        truck.addMechanic(mechanic4);
-        truck.addMechanic(mechanic4);
+//        truck.addMechanic(mechanic1);
+        truck.addMechanic(mechanic3);
+
 
         List<Transport<?>> racingList = new ArrayList<>();
 
@@ -160,7 +158,7 @@ public class Main {
         Set<Driver> driverSet = new HashSet<>(drivers);
         System.out.println(driverSet);
 
-        System.out.println("---------- итератор--------------");
+        System.out.println("\n---------- итератор--------------");
 
         Iterator<Driver> driverIterator = driverSet.iterator();
         while (driverIterator.hasNext()) {
