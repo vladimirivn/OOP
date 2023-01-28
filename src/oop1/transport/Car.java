@@ -4,6 +4,8 @@ import oop1.transport.drivers.DriverB;
 import oop1.transport.exception.CantFindLicenseException;
 import oop1.transport.exception.WrongLicenseException;
 
+import java.util.Objects;
+
 public class Car extends Transport<DriverB> {
     private CarBodyType carBodyType;
 
@@ -107,5 +109,18 @@ public class Car extends Transport<DriverB> {
     @Override
     public String toString() {
         return super.toString() + ", " + carBodyType.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return carBodyType == car.carBodyType;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(carBodyType);
     }
 }

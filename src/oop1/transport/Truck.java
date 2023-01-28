@@ -5,6 +5,8 @@ import oop1.transport.drivers.DriverD;
 import oop1.transport.exception.CantFindLicenseException;
 import oop1.transport.exception.WrongLicenseException;
 
+import java.util.Objects;
+
 public class Truck extends Transport<DriverD> {
     private WeightTruck weightTruck;
 
@@ -115,5 +117,18 @@ public class Truck extends Transport<DriverD> {
     @Override
     public String toString() {
         return super.toString() + " " + weightTruck.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Truck truck = (Truck) o;
+        return weightTruck == truck.weightTruck;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(weightTruck);
     }
 }

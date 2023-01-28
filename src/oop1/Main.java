@@ -37,68 +37,70 @@ public class Main {
                 driverD,
                 Truck.WeightTruck.N3
         );
-        System.out.println("-------------------------");
+//        System.out.println("-------------------------");
 //            System.out.println(car);
 
 //            car.printType();
 //            car.pitStop();
 //            car.bestTimeCircle();
 //            car.maximumSpeed();
-        try {
-            car.passDiagnostics();
-        } catch (CantFindLicenseException | WrongLicenseException e) {
-            System.out.println(e.getMessage());
-        }
-
-        System.out.println("-------------------------");
+//        try {
+//            car.passDiagnostics();
+//        } catch (CantFindLicenseException | WrongLicenseException e) {
+//            System.out.println(e.getMessage());
+//        }
+//
+//        System.out.println("-------------------------");
 //            System.out.println(bus);
 
 //            bus.printType();
 //            bus.pitStop();
 //            bus.bestTimeCircle();
 //            bus.maximumSpeed();
-        try {
-            bus.passDiagnostics();
-        } catch (CantFindLicenseException e) {
-            System.out.println(e.getMessage());
-        }
-
-        System.out.println("-------------------------");
+//        try {
+//            bus.passDiagnostics();
+//        } catch (CantFindLicenseException e) {
+//            System.out.println(e.getMessage());
+//        }
+//
+//        System.out.println("-------------------------");
 //            System.out.println(truck);
 
 //            truck.printType();
 //            truck.pitStop();
 //            truck.bestTimeCircle();
 //            truck.maximumSpeed();
+//
+//        try {
+//            truck.passDiagnostics();
+//        } catch (CantFindLicenseException | WrongLicenseException e) {
+//            System.out.println(e.getMessage());
+//        }
 
-        try {
-            truck.passDiagnostics();
-        } catch (CantFindLicenseException | WrongLicenseException e) {
-            System.out.println(e.getMessage());
-        }
+//        System.out.println("----------- Заезды --------------");
+//        printInfoCompeting(car);
+//        printInfoCompeting(bus);
+//        printInfoCompeting(truck);
 
-
-        System.out.println("----------- Заезды --------------");
-        printInfoCompeting(car);
-        printInfoCompeting(bus);
-        printInfoCompeting(truck);
-
-        System.out.println("-------------------------");
+        System.out.println();
 
         List<Driver> drivers = new ArrayList<>();
 
         drivers.add(driverB);
         drivers.add(driverC);
         drivers.add(driverD);
+        drivers.add(driverB);
 
-        Mechanic mechanic1 = new Mechanic("Ivanov", "B Motors");
+        System.out.println(drivers);
+
+        Mechanic mechanic1 = new Mechanic("Ivanov", "A Motors");
         Mechanic mechanic2 = new Mechanic("Pavlov", "B Motors");
         Mechanic mechanic3 = new Mechanic("Kotov", "C Motors");
         Mechanic mechanic4 = new Mechanic("Pomidorov", "D Motors");
 
 
         car.addMechanic(mechanic1);
-        car.addMechanic(mechanic1); // добавим второй раз для проверки множества
+//        car.addMechanic(mechanic1);
         car.addMechanic(mechanic2);
 
         bus.addMechanic(mechanic1);
@@ -114,6 +116,7 @@ public class Main {
         racingList.add(bus);
         racingList.add(truck);
 
+        System.out.println();
         System.out.println("-----добавление автотранспорта в очередь --------------------");
 
         ServiceStation serviceStation = new ServiceStation();
@@ -121,17 +124,21 @@ public class Main {
         serviceStation.addTransportToQueue(bus);
         serviceStation.addTransportToQueue(truck);
 
-        System.out.println("------------вывод списка всех автомобилей ----------------------------");
+        System.out.println();
+        System.out.println("------------ вывод списка всех автомобилей и механиков ----------------------------");
 
         for (Transport<?> transport : racingList) {
             System.out.println(transport.getBrand() + " " + transport.getDriver() + " " + transport.getMechanics());
         }
+        System.out.println();
         System.out.println("------------ Техобслуживание автомобилей ----------------------------");
+
 
         for (Transport<?> transport : racingList) {
             serviceStation.startMaintenance();
         }
 
+        System.out.println();
         System.out.println("------------ Map ----------------------------");
 
         Map<Transport<?>, Mechanic> transportMechanicMap = new HashMap<>();
@@ -140,12 +147,32 @@ public class Main {
             for (Mechanic mechanic : racer.getMechanics()) {
                 transportMechanicMap.put(racer, mechanic);
             }
-            Set<Mechanic> mechanics = racingList.iterator().next().getMechanics();
         }
+
+        System.out.println(transportMechanicMap);
+        System.out.println();
 
         for (Map.Entry<Transport<?>, Mechanic> entry : transportMechanicMap.entrySet()) {
             System.out.println("Ключ ( " + entry.getKey() + " ) ---> Значение ( " + entry.getValue() + " )");
         }
+
+        System.out.println();
+        Set<Driver> driverSet = new HashSet<>(drivers);
+        System.out.println(driverSet);
+
+        System.out.println("---------- итератор--------------");
+
+        Iterator<Driver> driverIterator = driverSet.iterator();
+        while (driverIterator.hasNext()) {
+            System.out.println(driverIterator.next());
+        }
+
+        System.out.println();
+
+        for (Driver driver : driverSet) {
+            System.out.println(driver);
+        }
+
     }
 
     private static void printInfoCompeting(Transport<?> transport) {

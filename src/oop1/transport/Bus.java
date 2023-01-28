@@ -3,6 +3,8 @@ package oop1.transport;
 import oop1.transport.drivers.DriveC;
 import oop1.transport.exception.CantFindLicenseException;
 
+import java.util.Objects;
+
 public class Bus extends Transport<DriveC> {
 
     private CapacityBus capacityBus;
@@ -106,7 +108,25 @@ public class Bus extends Transport<DriveC> {
     }
 
     @Override
+    public boolean isNeedService() {
+        return false;
+    }
+
+    @Override
     public String toString() {
         return super.toString() + " " + capacityBus.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Bus bus = (Bus) o;
+        return capacityBus == bus.capacityBus;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(capacityBus);
     }
 }
