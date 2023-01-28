@@ -5,6 +5,8 @@ import oop1.transport.drivers.DriverD;
 import oop1.transport.exception.CantFindLicenseException;
 import oop1.transport.exception.WrongLicenseException;
 
+import java.util.Objects;
+
 public class Truck extends Transport<DriverD> {
     private WeightTruck weightTruck;
 
@@ -100,14 +102,12 @@ public class Truck extends Transport<DriverD> {
     }
 
     @Override
-    public void passDiagnostics() throws CantFindLicenseException {
-//    }, WrongLicenseException {
+    public void passDiagnostics() throws WrongLicenseException, CantFindLicenseException {
 
-        if (!getDriver().isDriversLicense()) {
+        if (getDriver() == null) {
+            throw new WrongLicenseException("Некорректный тип прав водителя!");
+        } else if (!getDriver().isDriversLicense()) {
             throw new CantFindLicenseException(getDriver().getFullName() + " не имеет прав, диагностика не пройдена");
-
-//        else if (getDriver().getClass() != DriverD.class) {
-//            throw new WrongLicenseException("Некорректный тип прав водителя!");
         } else {
             System.out.println(getDriver().getFullName() +
                     " имеет соответствующую категорию прав: " + getDriver().getClass() + ", диагностика пройдена");
@@ -117,5 +117,18 @@ public class Truck extends Transport<DriverD> {
     @Override
     public String toString() {
         return super.toString() + " " + weightTruck.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Truck truck = (Truck) o;
+        return weightTruck == truck.weightTruck;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(weightTruck);
     }
 }

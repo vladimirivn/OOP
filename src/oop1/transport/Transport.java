@@ -1,7 +1,13 @@
 package oop1.transport;
 
+import oop1.transport.drivers.Driver;
 import oop1.transport.exception.CantFindLicenseException;
 import oop1.transport.exception.WrongLicenseException;
+import oop1.transport.mechanic.Mechanic;
+
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 public abstract class Transport<T extends Driver> implements Competing {
     private final String brand; // Марка
@@ -9,6 +15,8 @@ public abstract class Transport<T extends Driver> implements Competing {
     private double engineVolume; //Объем двигателя
 
     private T driver;
+
+    private final Set<Mechanic> mechanics = new HashSet<>();
 
     private static final String DEFAULT_VALUE = "default";
     private static final double DEFAULT_ENGINE_VOLUME = 1.5;
@@ -39,8 +47,7 @@ public abstract class Transport<T extends Driver> implements Competing {
 
     public abstract void printType();
 
-    public abstract void passDiagnostics() throws CantFindLicenseException;
-//    , WrongLicenseException;
+    public abstract void passDiagnostics() throws WrongLicenseException, CantFindLicenseException;
 
     public String getBrand() {
         return brand;
@@ -70,8 +77,32 @@ public abstract class Transport<T extends Driver> implements Competing {
         this.driver = driver;
     }
 
+    public Set<Mechanic> getMechanics() {
+        return mechanics;
+    }
+
+    public void addMechanic(Mechanic mechanic) {
+        mechanics.add(mechanic);
+    }
+
+    public boolean isNeedService() {
+        return true;
+    }
     @Override
     public String toString() {
         return "Марка: " + brand + ", модель: " + model + ", объем двигателя: " + engineVolume;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Transport<?> transport = (Transport<?>) o;
+        return Double.compare(transport.engineVolume, engineVolume) == 0 && Objects.equals(brand, transport.brand) && Objects.equals(model, transport.model) && Objects.equals(driver, transport.driver) && Objects.equals(mechanics, transport.mechanics);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(brand, model, engineVolume, driver, mechanics);
     }
 }

@@ -1,10 +1,11 @@
-package oop1.transport;
+package oop1.transport.drivers;
+
+import java.util.Objects;
 
 public abstract class Driver {
     private String fullName;
     private boolean driversLicense;
     private int drivingExperience;
-
     private static final String DEFAULT_VALUE = "default";
 
     public Driver(String fullName, boolean driversLicense, int drivingExperience) {
@@ -45,5 +46,23 @@ public abstract class Driver {
 
     public void setDrivingExperience(int drivingExperience) {
         this.drivingExperience = drivingExperience;
+    }
+
+    @Override
+    public String toString() {
+        return fullName;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Driver driver = (Driver) o;
+        return driversLicense == driver.driversLicense && drivingExperience == driver.drivingExperience && Objects.equals(fullName, driver.fullName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(fullName, driversLicense, drivingExperience);
     }
 }
